@@ -1,7 +1,7 @@
-import { Preview } from "../molecules/Preview";
-import { Hero } from "../organisms/Hero";
-import { NewsVideo } from "../organisms/NewsVideo";
-import { TwoColumns } from "../organisms/TwoColumns";
+import { Preview } from "../components/molecules/Preview";
+import { Hero } from "../components/organisms/Hero";
+import { NewsVideo } from "../components/organisms/NewsVideo";
+import { TwoColumns } from "../components/organisms/TwoColumns";
 import { Stack } from "../templates/Stack";
 
 export const Home = () => {

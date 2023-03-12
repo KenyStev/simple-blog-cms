@@ -8,9 +8,9 @@ const Container = styled.div`
   gap: 1rem;
 `;
 
-export const Preview = ({ img, text }) => (
-  <Container>
-    <Image src={img} />
+export const Preview = ({ img, text, onClick, ...props }) => (
+  <Container onClick={onClick} {...props}>
+    {img && <Image src={img} />}
     <JustifiedText>{text}</JustifiedText>
   </Container>
 );
