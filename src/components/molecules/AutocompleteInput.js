@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import { Input } from "../atoms/Input";
 import styled from "styled-components";
 import { DropdownList } from "../atoms/DropdownList";
@@ -9,18 +9,24 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-export const AutocompleteInput = ({ options, onSelect }) => {
+export const AutocompleteInput = forwardRef(({ options, onSelect }, ref) => {
   const [inputValue, setInputValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
+
+  const filterValue = useCallback(
+    (value) => {
+      const filtered = options.filter((option) =>
+        option.title.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredOptions(filtered);
+    },
+    [options]
+  );
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setInputValue(value);
-
-    const filtered = options.filter((option) =>
-      option.title.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredOptions(filtered);
+    filterValue(value);
   };
 
   const handleOptionClick = (option) => {
@@ -28,6 +34,14 @@ export const AutocompleteInput = ({ options, onSelect }) => {
     setFilteredOptions([]);
     setInputValue(option.title);
   };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      trigger: () => filterValue(inputValue),
+    }),
+    [inputValue, filterValue]
+  );
 
   return (
     <Wrapper>
@@ -46,4 +60,4 @@ export const AutocompleteInput = ({ options, onSelect }) => {
       )}
     </Wrapper>
   );
-};
+});

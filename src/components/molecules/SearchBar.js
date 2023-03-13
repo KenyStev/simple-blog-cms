@@ -4,6 +4,7 @@ import { Label } from "../atoms/Label";
 import { AutocompleteInput } from "./AutocompleteInput";
 import { useBlogPostStorage } from "../../hooks/useLocalstorageState";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const Container = styled.div`
 export const SearchBar = ({ label }) => {
   const { blogPosts } = useBlogPostStorage();
   const navigate = useNavigate();
+  const inputRef = useRef();
 
   return (
     <Container>
@@ -22,8 +24,9 @@ export const SearchBar = ({ label }) => {
         <AutocompleteInput
           options={blogPosts}
           onSelect={(post) => navigate(`/blog/${post.id}`)}
+          ref={inputRef}
         />
-        <Button>Search</Button>
+        <Button onClick={() => inputRef.current.trigger()}>Search</Button>
       </Container>
     </Container>
   );
