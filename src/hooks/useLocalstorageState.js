@@ -25,9 +25,9 @@ export const useBlogPostStorage = () => {
   );
 
   const updateBlogPostById = useCallback(
-    (id, updated) => {
+    (updated) => {
       setBlogPosts((posts) =>
-        posts.map((post) => (post.id === id ? updated : post))
+        posts.map((post) => (post.id === updated.id ? updated : post))
       );
     },
     [setBlogPosts]

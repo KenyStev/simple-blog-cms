@@ -12,7 +12,6 @@ export const BlogPost = () => {
   const { id } = useParams();
   const { getBlogPostById } = useBlogPostStorage();
   const post = getBlogPostById(id);
-  console.log({ post });
 
   return post ? (
     <Container>

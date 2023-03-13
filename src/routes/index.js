@@ -5,6 +5,7 @@ import { About } from "../pages/About";
 import { Blog } from "../pages/Blog";
 import { Contact } from "../pages/Contact";
 import { BlogPost } from "../pages/BlogPost";
+import { CreateEditPost } from "../pages/CreateEditPost";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "blog/new",
+        element: <CreateEditPost />,
+      },
+      {
+        path: "blog/:id/edit",
+        element: <CreateEditPost edit />,
       },
       {
         path: "blog/:id",
