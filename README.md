@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Simple Blog CMS
 
 This is a blog CMS to store RAW html content in local storage in order to structure an atomic architecture.
 
