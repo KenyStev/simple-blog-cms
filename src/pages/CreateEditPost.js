@@ -13,8 +13,14 @@ export const CreateEditPost = ({ edit }) => {
   const editPost = edit ? getBlogPostById(id) : { id: uuidv4() };
 
   useEffect(() => {
-    finished && navigate(`/blog/${editPost.id}`);
-  }, [finished, navigate, editPost.id]);
+    if (finished) {
+      if (edit) {
+        navigate(`/blog/${editPost.id}`);
+      } else {
+        navigate("/blog");
+      }
+    }
+  }, [finished, navigate, editPost.id, edit]);
 
   return (
     <div>

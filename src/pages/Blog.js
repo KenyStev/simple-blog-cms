@@ -3,6 +3,8 @@ import { Preview } from "../components/molecules/Preview";
 import { useBlogPostStorage } from "../hooks/useLocalstorageState";
 import { Stack } from "../templates/Stack";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../components/atoms/Button";
+import { BlogSettings } from "../components/organisms/BlogSettings";
 
 const PreviewStyled = styled(Preview)`
   padding: 0.5rem 1.5rem;
@@ -21,6 +23,7 @@ export const Blog = () => {
 
   return (
     <Stack>
+      <BlogSettings text='Create New' href='/blog/new' />
       {blogPosts.map((post) => (
         <PreviewStyled
           key={post.id}
